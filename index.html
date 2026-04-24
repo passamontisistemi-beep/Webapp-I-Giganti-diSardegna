@@ -2,17 +2,15 @@
 <html lang="it">
 <head>
   <meta charset="UTF-8" />
-  <title>I Giganti della Sardegna</title>
+  <title>I Giganti della Sardegna – Demo 68 POI</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <!-- Leaflet CSS -->
   <link
     rel="stylesheet"
     href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
   />
 
   <style>
-    /* Fix fondamentale: altezza piena */
     html, body {
       height: 100%;
       margin: 0;
@@ -64,7 +62,6 @@
       opacity: 0.8;
     }
 
-    /* Mappa: altezza flessibile */
     #map {
       flex: 1;
       width: 100%;
@@ -94,7 +91,6 @@
       opacity: 0.7;
     }
 
-    /* Scheda POI */
     .poi-panel {
       position: fixed;
       left: 0;
@@ -187,7 +183,6 @@
       text-decoration: underline;
     }
 
-    /* Marker */
     .custom-marker {
       width: 14px;
       height: 14px;
@@ -219,7 +214,6 @@
   <div class="logo">PASSAMONTI_COMMUNICATION</div>
 </footer>
 
-<!-- Scheda POI -->
 <div id="poiPanel" class="poi-panel">
   <div class="poi-panel-header">
     <div>
@@ -247,61 +241,112 @@
   </div>
 </div>
 
-<!-- Leaflet JS -->
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
 <script>
-/* POI di esempio — poi li sostituiamo con i tuoi 69 */
 const pois = [
-  {
-    id: 1,
-    nome: "Nuraghe Majori",
-    categoria: "Nuraghe",
-    comune: "Tempio Pausania",
-    lat: 40.9,
-    lng: 9.1,
-    telefono: "+390000000001"
-  },
-  {
-    id: 16,
-    nome: "Lollove",
-    categoria: "Borgo",
-    comune: "Nuoro",
-    lat: 40.365,
-    lng: 9.3324,
-    telefono: "+390000000016"
-  },
-  {
-    id: 39,
-    nome: "Tombe dei Giganti di Madau",
-    categoria: "Tomba dei giganti",
-    comune: "Fonni",
-    lat: 40.113,
-    lng: 9.26,
-    telefono: "+390000000039"
-  }
+  /* NURAGHI (1–22) */
+  {id:1,nome:"Nuraghe Majori",categoria:"Nuraghe",comune:"Tempio Pausania",lat:40.9,lng:9.1,telefono:"+390000000001"},
+  {id:2,nome:"Nuraghe Palmavera",categoria:"Nuraghe",comune:"Alghero",lat:40.557,lng:8.319,telefono:"+390000000002"},
+  {id:3,nome:"Complesso di Romanzesu",categoria:"Nuraghe complesso",comune:"Bitti",lat:40.482,lng:9.375,telefono:"+390000000003"},
+  {id:4,nome:"Santu Antine",categoria:"Nuraghe complesso",comune:"Torralba",lat:40.421,lng:8.735,telefono:"+390000000004"},
+  {id:5,nome:"Nuraghe Appiu",categoria:"Nuraghe",comune:"Villanova Monteleone",lat:40.502,lng:8.58,telefono:"+390000000005"},
+  {id:6,nome:"Serra Orrios",categoria:"Villaggio nuragico",comune:"Dorgali",lat:40.292,lng:9.588,telefono:"+390000000006"},
+  {id:7,nome:"Nuraghe Orolo",categoria:"Nuraghe",comune:"Bortigali",lat:40.268,lng:8.84,telefono:"+390000000007"},
+  {id:8,nome:"Sa Sedda e Sos Carros",categoria:"Nuraghe complesso",comune:"Oliena",lat:40.273,lng:9.405,telefono:"+390000000008"},
+  {id:9,nome:"Nuraghe Losa",categoria:"Nuraghe",comune:"Abbasanta",lat:40.128,lng:8.82,telefono:"+390000000009"},
+  {id:10,nome:"Complesso Santa Cristina",categoria:"Nuraghe complesso",comune:"Paulilatino",lat:40.064,lng:8.78,telefono:"+390000000010"},
+  {id:11,nome:"S’Arcu e Is Forros",categoria:"Nuraghe complesso",comune:"Villagrande Strisaili",lat:40.0,lng:9.45,telefono:"+390000000011"},
+  {id:12,nome:"Nuraghe Is Paras",categoria:"Nuraghe",comune:"Isili",lat:39.74,lng:9.1,telefono:"+390000000012"},
+  {id:13,nome:"Su Nuraxi",categoria:"Nuraghe complesso",comune:"Barumini",lat:39.7,lng:9.0,telefono:"+390000000013"},
+  {id:14,nome:"Complesso Santa Vittoria",categoria:"Nuraghe complesso",comune:"Serri",lat:39.71,lng:9.1,telefono:"+390000000014"},
+  {id:15,nome:"Nuraghe Arrubiu",categoria:"Nuraghe complesso",comune:"Orroli",lat:39.66,lng:9.3,telefono:"+390000000015"},
+  {id:16,nome:"Nuraghe Cuccurada",categoria:"Nuraghe",comune:"Mogoro",lat:39.66,lng:8.74,telefono:"+390000000016"},
+  {id:17,nome:"Nuraghe Genna Maria",categoria:"Nuraghe",comune:"Villanovaforru",lat:39.63,lng:8.85,telefono:"+390000000017"},
+  {id:18,nome:"Su Mulinu",categoria:"Nuraghe",comune:"Villanovafranca",lat:39.63,lng:8.99,telefono:"+390000000018"},
+  {id:19,nome:"Nuraghe Seruci",categoria:"Nuraghe complesso",comune:"Gonnesa",lat:39.25,lng:8.42,telefono:"+390000000019"},
+  {id:20,nome:"Nuraghe Diana",categoria:"Nuraghe",comune:"Quartu Sant’Elena",lat:39.23,lng:9.24,telefono:"+390000000020"},
+  {id:21,nome:"Nuraghe Arresi",categoria:"Nuraghe",comune:"Sant’Anna Arresi",lat:39.0,lng:8.63,telefono:"+390000000021"},
+  {id:22,nome:"Nuraghe Ponte",categoria:"Nuraghe",comune:"Dualchi",lat:40.23,lng:8.9,telefono:"+390000000022"},
+
+  /* BORGHI (23–37) */
+  {id:23,nome:"Lollove",categoria:"Borgo",comune:"Lollove",lat:40.365,lng:9.3324,telefono:"+390000000023"},
+  {id:24,nome:"Tempio Pausania",categoria:"Borgo",comune:"Tempio Pausania",lat:40.9,lng:9.1,telefono:"+390000000024"},
+  {id:25,nome:"Aggius",categoria:"Borgo",comune:"Aggius",lat:40.93,lng:8.98,telefono:"+390000000025"},
+  {id:26,nome:"Atzara",categoria:"Borgo",comune:"Atzara",lat:39.99,lng:9.07,telefono:"+390000000026"},
+  {id:27,nome:"Bosa",categoria:"Borgo",comune:"Bosa",lat:40.3,lng:8.5,telefono:"+390000000027"},
+  {id:28,nome:"Carloforte",categoria:"Borgo",comune:"Carloforte",lat:39.14,lng:8.3,telefono:"+390000000028"},
+  {id:29,nome:"Galtellì",categoria:"Borgo",comune:"Galtellì",lat:40.39,lng:9.61,telefono:"+390000000029"},
+  {id:30,nome:"Laconi",categoria:"Borgo",comune:"Laconi",lat:39.85,lng:9.05,telefono:"+390000000030"},
+  {id:31,nome:"La Maddalena",categoria:"Borgo",comune:"La Maddalena",lat:41.21,lng:9.41,telefono:"+390000000031"},
+  {id:32,nome:"Oliena",categoria:"Borgo",comune:"Oliena",lat:40.27,lng:9.4,telefono:"+390000000032"},
+  {id:33,nome:"Posada",categoria:"Borgo",comune:"Posada",lat:40.63,lng:9.72,telefono:"+390000000033"},
+  {id:34,nome:"Sadali",categoria:"Borgo",comune:"Sadali",lat:39.82,lng:9.27,telefono:"+390000000034"},
+  {id:35,nome:"Sardara",categoria:"Borgo",comune:"Sardara",lat:39.62,lng:8.82,telefono:"+390000000035"},
+  {id:36,nome:"Gavoi",categoria:"Borgo",comune:"Gavoi",lat:40.16,lng:9.2,telefono:"+390000000036"},
+  {id:37,nome:"Castelsardo",categoria:"Borgo",comune:"Castelsardo",lat:40.92,lng:8.71,telefono:"+390000000037"},
+
+  /* TOMBE DEI GIGANTI (38–41) */
+  {id:38,nome:"Tomba dei Giganti Coddu",categoria:"Tomba dei giganti",comune:"Arzachena",lat:41.076,lng:9.397,telefono:"+390000000038"},
+  {id:39,nome:"Tombe dei Giganti di Madau",categoria:"Tombe dei giganti",comune:"Fonni",lat:40.113,lng:9.26,telefono:"+390000000039"},
+  {id:40,nome:"Tomba dei Giganti Is Concias",categoria:"Tombe dei giganti",comune:"Quartucciu",lat:39.26,lng:9.35,telefono:"+390000000040"},
+  {id:41,nome:"Tomba dei Giganti Sa Domu e S’Orku",categoria:"Tombe dei giganti",comune:"Siddi",lat:39.66,lng:8.9,telefono:"+390000000041"},
+
+  /* DOMUS DE JANAS (42–59) */
+  {id:42,nome:"Necropoli di Anghelu Ruju",categoria:"Domus de Janas",comune:"Alghero",lat:40.6275,lng:8.3197,telefono:"+390000000042"},
+  {id:43,nome:"Necropoli di Su Crucifissu Mannu",categoria:"Domus de Janas",comune:"Porto Torres",lat:40.81,lng:8.444,telefono:"+390000000043"},
+  {id:44,nome:"Domus de Janas della Roccia dell'Elefante",categoria:"Domus de Janas",comune:"Castelsardo",lat:40.8894,lng:8.7461,telefono:"+390000000044"},
+  {id:45,nome:"Necropoli di Sant’Andrea Priu",categoria:"Domus de Janas",comune:"Bonorva",lat:40.4194,lng:8.8358,telefono:"+390000000045"},
+  {id:46,nome:"Necropoli di Puttu Codinu",categoria:"Domus de Janas",comune:"Villanova Monteleone",lat:40.4853,lng:8.4419,telefono:"+390000000046"},
+  {id:47,nome:"Necropoli di Mesu 'e Montes",categoria:"Domus de Janas",comune:"Ossi",lat:40.6389,lng:8.5831,telefono:"+390000000047"},
+  {id:48,nome:"Necropoli di Monte Siseri / S’Incantu",categoria:"Domus de Janas",comune:"Putifigari",lat:40.5731,lng:8.3964,telefono:"+390000000048"},
+  {id:49,nome:"Necropoli di Sa Pala Larga",categoria:"Domus de Janas",comune:"Bonorva",lat:40.418,lng:8.8475,telefono:"+390000000049"},
+  {id:50,nome:"Necropoli di Sos Forrighesos",categoria:"Domus de Janas",comune:"Anela",lat:40.4356,lng:9.0272,telefono:"+390000000050"},
+  {id:51,nome:"Necropoli di Ispiluncas",categoria:"Domus de Janas",comune:"Sedilo",lat:40.1656,lng:8.9247,telefono:"+390000000051"},
+  {id:52,nome:"Necropoli di Brodu",categoria:"Domus de Janas",comune:"Oniferi",lat:40.2378,lng:9.1764,telefono:"+390000000052"},
+  {id:53,nome:"Necropoli di Istevene",categoria:"Domus de Janas",comune:"Mamoiada",lat:40.2225,lng:9.2742,telefono:"+390000000053"},
+  {id:54,nome:"Necropoli di Montessu",categoria:"Domus de Janas",comune:"Villaperuccio",lat:39.1242,lng:8.6658,telefono:"+390000000054"},
+  {id:55,nome:"Parco Archeologico di Pranu Mutteddu",categoria:"Domus de Janas",comune:"Goni",lat:39.5761,lng:9.2781,telefono:"+390000000055"},
+  {id:56,nome:"Parco dei Petroglifi A (Moseddu/Cheremule)",categoria:"Domus de Janas",comune:"Moseddu/Cheremule",lat:40.4864,lng:8.4864,telefono:"+390000000056"},
+  {id:57,nome:"Parco dei Petroglifi B (Orto del Beneficio Parrocchiale)",categoria:"Domus de Janas",comune:"Orto del Beneficio Parrocchiale",lat:40.5014,lng:8.7292,telefono:"+390000000057"},
+  {id:58,nome:"Domus de Janas dell'Orto del Beneficio Parrocchiale",categoria:"Domus de Janas",comune:"Sennori",lat:40.7889,lng:8.5944,telefono:"+390000000058"},
+  {id:59,nome:"Domus de Janas di Mandras",categoria:"Domus de Janas",comune:"Mandras",lat:40.4975,lng:8.7344,telefono:"+390000000059"},
+
+  /* POZZI SACRI (60–63) */
+  {id:60,nome:"Tempio a pozzo Predio Canopoli",categoria:"Pozzo sacro",comune:"Perfugas",lat:40.839,lng:8.9,telefono:"+390000000060"},
+  {id:61,nome:"Fonte Sacra Su Tempiesu",categoria:"Pozzo sacro",comune:"Orune",lat:40.395,lng:9.4,telefono:"+390000000061"},
+  {id:62,nome:"Sant’Anastasia",categoria:"Pozzo sacro",comune:"Sardara",lat:39.62,lng:8.82,telefono:"+390000000062"},
+  {id:63,nome:"Funtana Coberta",categoria:"Pozzo sacro",comune:"Ballao",lat:39.58,lng:9.35,telefono:"+390000000063"},
+
+  /* FAUNA IDENTITARIA (64–68) */
+  {id:64,nome:"Stagno di Santa Gilla – Fenicotteri rosa",categoria:"Fauna identitaria",comune:"Cagliari / Assemini / Elmas / Capoterra",lat:39.2167,lng:9.2333,telefono:"+390000000064"},
+  {id:65,nome:"Monte Arcosu – Cervo sardo",categoria:"Fauna identitaria",comune:"Assemini / Capoterra / Decimomannu / Domus de Maria / Nuxis / Pula / Santadi / Sarroch / Siliqua / Teulada / Uta / Villaspeciosa / Villa San Pietro",lat:39.1286,lng:8.8464,telefono:"+390000000065"},
+  {id:66,nome:"Capo Marrargiu – Grifone",categoria:"Fauna identitaria",comune:"Bosa / Oristano",lat:40.3406,lng:8.3871,telefono:"+390000000066"},
+  {id:67,nome:"Parco naturale regionale di Porto Conte – Grifone",categoria:"Fauna identitaria",comune:"Alghero",lat:40.5956,lng:8.1672,telefono:"+390000000067"},
+  {id:68,nome:"Giara di Gesturi – Cavallini",categoria:"Fauna identitaria",comune:"Gesturi",lat:39.7333,lng:9.0228,telefono:"+390000000068"}
 ];
 
 function categoriaColor(cat) {
   const colors = {
     "Nuraghe": "#c28b3b",
+    "Nuraghe complesso": "#c28b3b",
+    "Villaggio nuragico": "#c28b3b",
     "Borgo": "#d6a85b",
     "Domus de Janas": "#a33b3b",
     "Tomba dei giganti": "#555b66",
+    "Tombe dei giganti": "#555b66",
     "Pozzo sacro": "#2fa7b8",
     "Fauna identitaria": "#3b7a4a"
   };
   return colors[cat] || "#ffffff";
 }
 
-/* Inizializza mappa */
 const map = L.map("map").setView([40.0, 9.0], 7);
 
 L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
   maxZoom: 18
 }).addTo(map);
 
-/* Marker */
 pois.forEach(poi => {
   const icon = L.divIcon({
     className: "",
@@ -313,12 +358,11 @@ pois.forEach(poi => {
   const marker = L.marker([poi.lat, poi.lng], { icon }).addTo(map);
 
   marker.on("click", () => {
-    map.setView([poi.lat, poi.lng], 12);
+    map.setView([poi.lat, poi.lng], 11);
     openPoiPanel(poi);
   });
 });
 
-/* Scheda POI */
 const panel = document.getElementById("poiPanel");
 const poiTitle = document.getElementById("poiTitle");
 const poiSubtitle = document.getElementById("poiSubtitle");
