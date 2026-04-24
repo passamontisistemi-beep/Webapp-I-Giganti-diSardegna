@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <title>I Giganti della Sardegna</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Leaflet CSS -->
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+    crossorigin=""
+  />
+
+  <style>
+    :root {
+      --bg: #05070b;
+      --fg: #f5f5f5;
+      --accent-nuraghe: #c28b3b;
+      --accent-borgo: #d6a85b;
+      --accent-domus: #a33b3b;
+      --accent-tomba: #555b66;
+      --accent-pozzo: #2fa7b8;
+      --accent-fauna: #3b7a4a;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        sans-serif;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--fg);
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+    }
+
+    header {
+      padding: 0.75rem 1rem 0.25rem;
+      border-bottom: 1px solid #222;
+    }
+
+    header h1 {
+      font-size: 1.2rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      text-align: center;
+    }
+
+    header .top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 0.4rem;
+      font-size: 0.8rem;
+    }
+
+    .languages span {
+      margin-right: 0.25rem;
+      cursor: pointer;
+      opacity: 0.7;
+    }
+
+    .languages span:hover {
+      opacity: 1;
+    }
+
+    .menu {
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-size: 0.7rem;
+      opacity: 0.8;
+    }
+
+    #map {
+      flex: 1;
+      width: 100%;
+    }
+
+    footer {
+      border-top: 1px solid #222;
+      padding: 0.4rem 0.7rem;
+      font-size:
