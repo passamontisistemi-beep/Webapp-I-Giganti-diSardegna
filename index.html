@@ -2,7 +2,7 @@
 <html lang="it">
 <head>
   <meta charset="UTF-8" />
-  <title>I Giganti della Sardegna – Demo 68 POI</title>
+  <title>I Giganti della Sardegna – Demo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <link
@@ -32,9 +32,9 @@
     }
 
     header h1 {
-      font-size: 1.2rem;
+      font-size: 1.1rem;
       text-align: center;
-      letter-spacing: 0.08em;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
       margin: 0;
     }
@@ -245,7 +245,6 @@
 
 <script>
 const pois = [
-  /* NURAGHI (1–22) */
   {id:1,nome:"Nuraghe Majori",categoria:"Nuraghe",comune:"Tempio Pausania",lat:40.9,lng:9.1,telefono:"+390000000001"},
   {id:2,nome:"Nuraghe Palmavera",categoria:"Nuraghe",comune:"Alghero",lat:40.557,lng:8.319,telefono:"+390000000002"},
   {id:3,nome:"Complesso di Romanzesu",categoria:"Nuraghe complesso",comune:"Bitti",lat:40.482,lng:9.375,telefono:"+390000000003"},
@@ -269,7 +268,6 @@ const pois = [
   {id:21,nome:"Nuraghe Arresi",categoria:"Nuraghe",comune:"Sant’Anna Arresi",lat:39.0,lng:8.63,telefono:"+390000000021"},
   {id:22,nome:"Nuraghe Ponte",categoria:"Nuraghe",comune:"Dualchi",lat:40.23,lng:8.9,telefono:"+390000000022"},
 
-  /* BORGHI (23–37) */
   {id:23,nome:"Lollove",categoria:"Borgo",comune:"Lollove",lat:40.365,lng:9.3324,telefono:"+390000000023"},
   {id:24,nome:"Tempio Pausania",categoria:"Borgo",comune:"Tempio Pausania",lat:40.9,lng:9.1,telefono:"+390000000024"},
   {id:25,nome:"Aggius",categoria:"Borgo",comune:"Aggius",lat:40.93,lng:8.98,telefono:"+390000000025"},
@@ -286,13 +284,11 @@ const pois = [
   {id:36,nome:"Gavoi",categoria:"Borgo",comune:"Gavoi",lat:40.16,lng:9.2,telefono:"+390000000036"},
   {id:37,nome:"Castelsardo",categoria:"Borgo",comune:"Castelsardo",lat:40.92,lng:8.71,telefono:"+390000000037"},
 
-  /* TOMBE DEI GIGANTI (38–41) */
   {id:38,nome:"Tomba dei Giganti Coddu",categoria:"Tomba dei giganti",comune:"Arzachena",lat:41.076,lng:9.397,telefono:"+390000000038"},
   {id:39,nome:"Tombe dei Giganti di Madau",categoria:"Tombe dei giganti",comune:"Fonni",lat:40.113,lng:9.26,telefono:"+390000000039"},
   {id:40,nome:"Tomba dei Giganti Is Concias",categoria:"Tombe dei giganti",comune:"Quartucciu",lat:39.26,lng:9.35,telefono:"+390000000040"},
   {id:41,nome:"Tomba dei Giganti Sa Domu e S’Orku",categoria:"Tombe dei giganti",comune:"Siddi",lat:39.66,lng:8.9,telefono:"+390000000041"},
 
-  /* DOMUS DE JANAS (42–59) */
   {id:42,nome:"Necropoli di Anghelu Ruju",categoria:"Domus de Janas",comune:"Alghero",lat:40.6275,lng:8.3197,telefono:"+390000000042"},
   {id:43,nome:"Necropoli di Su Crucifissu Mannu",categoria:"Domus de Janas",comune:"Porto Torres",lat:40.81,lng:8.444,telefono:"+390000000043"},
   {id:44,nome:"Domus de Janas della Roccia dell'Elefante",categoria:"Domus de Janas",comune:"Castelsardo",lat:40.8894,lng:8.7461,telefono:"+390000000044"},
@@ -312,15 +308,13 @@ const pois = [
   {id:58,nome:"Domus de Janas dell'Orto del Beneficio Parrocchiale",categoria:"Domus de Janas",comune:"Sennori",lat:40.7889,lng:8.5944,telefono:"+390000000058"},
   {id:59,nome:"Domus de Janas di Mandras",categoria:"Domus de Janas",comune:"Mandras",lat:40.4975,lng:8.7344,telefono:"+390000000059"},
 
-  /* POZZI SACRI (60–63) */
   {id:60,nome:"Tempio a pozzo Predio Canopoli",categoria:"Pozzo sacro",comune:"Perfugas",lat:40.839,lng:8.9,telefono:"+390000000060"},
   {id:61,nome:"Fonte Sacra Su Tempiesu",categoria:"Pozzo sacro",comune:"Orune",lat:40.395,lng:9.4,telefono:"+390000000061"},
   {id:62,nome:"Sant’Anastasia",categoria:"Pozzo sacro",comune:"Sardara",lat:39.62,lng:8.82,telefono:"+390000000062"},
   {id:63,nome:"Funtana Coberta",categoria:"Pozzo sacro",comune:"Ballao",lat:39.58,lng:9.35,telefono:"+390000000063"},
 
-  /* FAUNA IDENTITARIA (64–68) */
   {id:64,nome:"Stagno di Santa Gilla – Fenicotteri rosa",categoria:"Fauna identitaria",comune:"Cagliari / Assemini / Elmas / Capoterra",lat:39.2167,lng:9.2333,telefono:"+390000000064"},
-  {id:65,nome:"Monte Arcosu – Cervo sardo",categoria:"Fauna identitaria",comune:"Assemini / Capoterra / Decimomannu / Domus de Maria / Nuxis / Pula / Santadi / Sarroch / Siliqua / Teulada / Uta / Villaspeciosa / Villa San Pietro",lat:39.1286,lng:8.8464,telefono:"+390000000065"},
+  {id:65,nome:"Monte Arcosu – Cervo sardo",categoria:"Fauna identitaria",comune:"Comuni vari",lat:39.1286,lng:8.8464,telefono:"+390000000065"},
   {id:66,nome:"Capo Marrargiu – Grifone",categoria:"Fauna identitaria",comune:"Bosa / Oristano",lat:40.3406,lng:8.3871,telefono:"+390000000066"},
   {id:67,nome:"Parco naturale regionale di Porto Conte – Grifone",categoria:"Fauna identitaria",comune:"Alghero",lat:40.5956,lng:8.1672,telefono:"+390000000067"},
   {id:68,nome:"Giara di Gesturi – Cavallini",categoria:"Fauna identitaria",comune:"Gesturi",lat:39.7333,lng:9.0228,telefono:"+390000000068"}
