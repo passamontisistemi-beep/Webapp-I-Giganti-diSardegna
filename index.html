@@ -9,54 +9,41 @@
   <link
     rel="stylesheet"
     href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
-    crossorigin=""
   />
 
   <style>
-    :root {
-      --bg: #05070b;
-      --fg: #f5f5f5;
-      --accent-nuraghe: #c28b3b;
-      --accent-borgo: #d6a85b;
-      --accent-domus: #a33b3b;
-      --accent-tomba: #555b66;
-      --accent-pozzo: #2fa7b8;
-      --accent-fauna: #3b7a4a;
-    }
-
-    * {
-      box-sizing: border-box;
+    /* Fix fondamentale: altezza piena */
+    html, body {
+      height: 100%;
       margin: 0;
       padding: 0;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
-        sans-serif;
+      background: #05070b;
+      color: #f5f5f5;
+      font-family: system-ui, sans-serif;
     }
 
     body {
-      background: var(--bg);
-      color: var(--fg);
       display: flex;
       flex-direction: column;
-      height: 100vh;
     }
 
     header {
       padding: 0.75rem 1rem 0.25rem;
       border-bottom: 1px solid #222;
+      background: #05070b;
     }
 
     header h1 {
       font-size: 1.2rem;
+      text-align: center;
       letter-spacing: 0.08em;
       text-transform: uppercase;
-      text-align: center;
+      margin: 0;
     }
 
     header .top-bar {
       display: flex;
       justify-content: space-between;
-      align-items: center;
       margin-top: 0.4rem;
       font-size: 0.8rem;
     }
@@ -74,10 +61,10 @@
     .menu {
       text-transform: uppercase;
       letter-spacing: 0.12em;
-      font-size: 0.7rem;
       opacity: 0.8;
     }
 
+    /* Mappa: altezza flessibile */
     #map {
       flex: 1;
       width: 100%;
@@ -86,4 +73,283 @@
     footer {
       border-top: 1px solid #222;
       padding: 0.4rem 0.7rem;
-      font-size:
+      font-size: 0.7rem;
+      display: flex;
+      justify-content: space-between;
+      background: #05060a;
+    }
+
+    footer a {
+      color: #9fb4ff;
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    .logo {
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      opacity: 0.7;
+    }
+
+    /* Scheda POI */
+    .poi-panel {
+      position: fixed;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      margin: 0 auto;
+      max-width: 480px;
+      background: rgba(5, 7, 11, 0.96);
+      border-top: 1px solid #333;
+      box-shadow: 0 -8px 20px rgba(0, 0, 0, 0.6);
+      border-radius: 12px 12px 0 0;
+      transform: translateY(100%);
+      transition: transform 0.25s ease-out;
+      z-index: 9999;
+    }
+
+    .poi-panel.visible {
+      transform: translateY(0);
+    }
+
+    .poi-panel-header {
+      padding: 0.6rem 0.9rem 0.2rem;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .poi-title {
+      font-size: 0.95rem;
+      font-weight: 600;
+    }
+
+    .poi-subtitle {
+      font-size: 0.7rem;
+      opacity: 0.7;
+    }
+
+    .poi-close {
+      cursor: pointer;
+      font-size: 1.1rem;
+      opacity: 0.7;
+    }
+
+    .poi-body {
+      padding: 0.4rem 0.9rem 0.7rem;
+      font-size: 0.8rem;
+    }
+
+    .poi-category-pill {
+      display: inline-block;
+      padding: 0.1rem 0.5rem;
+      border-radius: 999px;
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      opacity: 0.8;
+      margin-bottom: 0.4rem;
+    }
+
+    .poi-section-title {
+      font-size: 0.7rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      opacity: 0.7;
+      margin-top: 0.4rem;
+      margin-bottom: 0.15rem;
+    }
+
+    .poi-links a {
+      display: inline-block;
+      margin-right: 0.4rem;
+      margin-bottom: 0.25rem;
+      padding: 0.25rem 0.5rem;
+      border-radius: 999px;
+      border: 1px solid #444;
+      color: #d7e0ff;
+      text-decoration: none;
+      font-size: 0.75rem;
+    }
+
+    .poi-links a:hover {
+      border-color: #7f9bff;
+    }
+
+    .poi-logistica-item a {
+      color: #9fe0ff;
+      text-decoration: none;
+    }
+
+    .poi-logistica-item a:hover {
+      text-decoration: underline;
+    }
+
+    /* Marker */
+    .custom-marker {
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      border: 2px solid white;
+      background: transparent;
+      box-shadow: 0 0 0 2px rgba(0,0,0,0.7);
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>I Giganti della Sardegna</h1>
+  <div class="top-bar">
+    <div class="languages">
+      <span>🇮🇹</span><span>🇬🇧</span><span>🇫🇷</span><span>🇩🇪</span><span>🇪🇸</span><span>🇨🇳</span>
+    </div>
+    <div class="menu">Mappa · Categorie · Storie · Info</div>
+  </div>
+</header>
+
+<div id="map"></div>
+
+<footer>
+  <div class="rss">RSS: <a href="#">ANSA Sardegna</a></div>
+  <div class="agid">Comune vicino: <a href="#">Portale AGID</a></div>
+  <div class="logo">PASSAMONTI_COMMUNICATION</div>
+</footer>
+
+<!-- Scheda POI -->
+<div id="poiPanel" class="poi-panel">
+  <div class="poi-panel-header">
+    <div>
+      <div id="poiTitle" class="poi-title"></div>
+      <div id="poiSubtitle" class="poi-subtitle"></div>
+    </div>
+    <div id="poiClose" class="poi-close">✕</div>
+  </div>
+
+  <div class="poi-body">
+    <div id="poiCategoryPill" class="poi-category-pill"></div>
+
+    <div class="poi-section-title">Guida di viaggio</div>
+    <div class="poi-links">
+      <a id="poiWikivoyage" href="#" target="_blank">Apri su Wikivoyage</a>
+    </div>
+
+    <div class="poi-section-title">Percorsi & mappe offline</div>
+    <div class="poi-links">
+      <a id="poiWikiloc" href="#" target="_blank">Apri su Wikiloc</a>
+    </div>
+
+    <div class="poi-section-title">Logistica</div>
+    <div id="poiLogistica"></div>
+  </div>
+</div>
+
+<!-- Leaflet JS -->
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script>
+/* POI di esempio — poi li sostituiamo con i tuoi 69 */
+const pois = [
+  {
+    id: 1,
+    nome: "Nuraghe Majori",
+    categoria: "Nuraghe",
+    comune: "Tempio Pausania",
+    lat: 40.9,
+    lng: 9.1,
+    telefono: "+390000000001"
+  },
+  {
+    id: 16,
+    nome: "Lollove",
+    categoria: "Borgo",
+    comune: "Nuoro",
+    lat: 40.365,
+    lng: 9.3324,
+    telefono: "+390000000016"
+  },
+  {
+    id: 39,
+    nome: "Tombe dei Giganti di Madau",
+    categoria: "Tomba dei giganti",
+    comune: "Fonni",
+    lat: 40.113,
+    lng: 9.26,
+    telefono: "+390000000039"
+  }
+];
+
+function categoriaColor(cat) {
+  const colors = {
+    "Nuraghe": "#c28b3b",
+    "Borgo": "#d6a85b",
+    "Domus de Janas": "#a33b3b",
+    "Tomba dei giganti": "#555b66",
+    "Pozzo sacro": "#2fa7b8",
+    "Fauna identitaria": "#3b7a4a"
+  };
+  return colors[cat] || "#ffffff";
+}
+
+/* Inizializza mappa */
+const map = L.map("map").setView([40.0, 9.0], 7);
+
+L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
+  maxZoom: 18
+}).addTo(map);
+
+/* Marker */
+pois.forEach(poi => {
+  const icon = L.divIcon({
+    className: "",
+    html: `<div class="custom-marker" style="border-color:${categoriaColor(poi.categoria)}"></div>`,
+    iconSize: [14, 14],
+    iconAnchor: [7, 7]
+  });
+
+  const marker = L.marker([poi.lat, poi.lng], { icon }).addTo(map);
+
+  marker.on("click", () => {
+    map.setView([poi.lat, poi.lng], 12);
+    openPoiPanel(poi);
+  });
+});
+
+/* Scheda POI */
+const panel = document.getElementById("poiPanel");
+const poiTitle = document.getElementById("poiTitle");
+const poiSubtitle = document.getElementById("poiSubtitle");
+const poiCategoryPill = document.getElementById("poiCategoryPill");
+const poiWikivoyage = document.getElementById("poiWikivoyage");
+const poiWikiloc = document.getElementById("poiWikiloc");
+const poiLogistica = document.getElementById("poiLogistica");
+
+function openPoiPanel(poi) {
+  poiTitle.textContent = poi.nome;
+  poiSubtitle.textContent = poi.comune;
+  poiCategoryPill.textContent = poi.categoria;
+  poiCategoryPill.style.backgroundColor = categoriaColor(poi.categoria);
+
+  const q = encodeURIComponent(poi.nome + " " + poi.comune + " Sardegna");
+  poiWikivoyage.href = "https://it.wikivoyage.org/w/index.php?search=" + q;
+  poiWikiloc.href = "https://www.wikiloc.com/it/percorsi/outdoor/" + q;
+
+  poiLogistica.innerHTML = `
+    <div class="poi-logistica-item">
+      📞 <a href="tel:${poi.telefono}">Chiama cooperativa / info</a>
+    </div>
+  `;
+
+  panel.classList.add("visible");
+}
+
+document.getElementById("poiClose").onclick = () => {
+  panel.classList.remove("visible");
+};
+</script>
+
+</body>
+</html>
